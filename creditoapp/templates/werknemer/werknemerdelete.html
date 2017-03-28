@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    {{ queryset_list }}
+   <form action="" method="post">
+       {% csrf_token %}
+    <h4>Weet u zeker dat uw <b>"{{ werknemer.voornaam }}"</b>wilt verwijderen?</h4>
+    <input type="submit" class="waves-effect btn" value="Verwijder">
+</form>
+{% endblock %}
+</body>
+</html>

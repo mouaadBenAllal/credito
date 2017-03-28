@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <div class="section">
+    <h4>Werknemers van De regenboog.</h4>
+  </div>
+    <form method="GET" action="">
+    <input type="text" style="width: 50%" placeholder="Search werknemers" name="q"/><br>
+    <input type="submit" class="waves-effect btn" value="Search">
+    </form>
+    <br>
+    <table class="highlight">
+        <thead>
+          <tr>
+              <th data-field="id">Id</th>
+              <th data-field="voornaam">Voornaam</th>
+              <th data-field="tussenvoegsel">Tussenvoegsel</th>
+              <th data-field="Achternaam">Achternaam</th>
+              <th data-field="Email">Email</th>
+              <th data-field="Rol">Rol</th>
+              <th data-field="Created">Aangemaakt op</th>
+              <th data-field="Laatst opgeslagen">Laatst gewijzigd</th>
+              <th data-field="Delete">Delete?</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for werknemers in object_list %}
+          <tr><td><a href="{% url 'werknemer_update' werknemers.id %}">{{  werknemers.id }}</a></td>
+            <td>{{ werknemers.voornaam }}</td>
+            <td>{{ werknemers.tussenvoegsel}}</td>
+            <td>{{ werknemers.achternaam }}</td>
+            <td>{{ werknemers.email }}</td>
+            <td>{{ werknemers.rol }}</td>
+            <td>{{ werknemers.created_at}}</td>
+            <td>{{ werknemers.updated_at}}</td>
+            <td><a href="{% url 'werknemer_delete' werknemers.id%}"><li class="material-icons">delete</li></a></td>
+          </tr>
+        {% empty %}
+            <br>
+            Geen werknemers.
+        {% endfor %}
+        </tbody>
+      </table>
+    <a href="{% url "werknemer_create" %}"><i class="material-icons">add</i></a>
+
+
+
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+
+
+{% endblock %}
+</body>
+</html>

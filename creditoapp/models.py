@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-
+# Model van de organisatie.
 class Organisatie(models.Model):
     naam = models.CharField(max_length=150, db_index=True)
 
@@ -13,7 +13,7 @@ class Organisatie(models.Model):
     def __str__(self):
         return self.naam
 
-
+# Model van werknemer
 class Werknemer(models.Model):
     organisatie = models.ForeignKey(Organisatie, related_name='werknemers', default=None)
     voornaam = models.CharField(max_length=150)

@@ -51,9 +51,8 @@
         </tbody>
       </table>
     <a href="{% url "werknemer_create" %}"><i class="material-icons">add</i></a>
-
-
-
+<br>
+<br>
         {% if object_list.has_previous %}
             <a href="?page={{ object_list.previous_page_number }}">previous</a>
         {% endif %}

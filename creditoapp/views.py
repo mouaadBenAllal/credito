@@ -10,10 +10,12 @@ from django.conf import settings
 # Create your views here.
 
 
+# View die homepage laat zien.
 def home(request):
     return render(request, 'home/home.html')
 
 
+# Functie die alle werknemers uit de db haalt.
 def werknemers_list(request):
     queryset_list = Werknemer.objects.all()
 
@@ -38,6 +40,7 @@ def werknemers_list(request):
     return render(request, "werknemer/werknemerlist.html", context)
 
 
+# Class based view om werknemers aan te maken.
 class WerknemerCreateView(CreateView):
     form_class = WerknemersForm
     template_name = 'werknemer/werknemercreate.html'
@@ -60,6 +63,7 @@ class WerknemerCreateView(CreateView):
     #
 
 
+# Class based view om werknemers te updaten.
 class WerknemerUpdate(UpdateView):
     model = Werknemer
     form_class = UpdateForm
@@ -67,12 +71,14 @@ class WerknemerUpdate(UpdateView):
     success_url = reverse_lazy('werknemers_list')
 
 
+# Class based view om werknemer te verwijderen.
 class WerknemerDelete(DeleteView):
     model = Werknemer
     template_name = 'werknemer/werknemerdelete.html'
     success_url = reverse_lazy('werknemers_list')
 
 
+# Functie om contact pagina te laten zien samen met de aangegeven form.
 def contact(request):
     form_class = ContactForm
 
